@@ -1,0 +1,11 @@
+{
+  "apps": {
+    "T02LWD4N7FT": {
+      "app_id": "A05NMJJ3QP4",
+      "IsDev": false,
+      "team_domain": "createiq",
+      "team_id": "T02LWD4N7FT"
+    }
+  },
+  "default": "createiq"
+}
