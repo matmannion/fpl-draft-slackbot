@@ -195,9 +195,9 @@ async function buildStandings(client: SlackAPIClient, league: number) {
     }) - ${s.event_total}`;
   }).join("\n");
 
-  const nextGameweek = basicInfo.events.data.find((gw) =>
+  const nextGameweek = gameInfo.next_event ? basicInfo.events.data.find((gw) =>
     gw.id === gameInfo.next_event
-  )!;
+  ) : undefined;
 
   const formatDateTime = (input: string) =>
     new Intl.DateTimeFormat("en-GB", {
@@ -221,12 +221,12 @@ ${standingsStr}
 
 Top three this gameweek:
 
-${standingsThisWeekStr}
+${standingsThisWeekStr}${nextGameweek ? `
 
 Gameweek ${gameInfo.next_event} deadlines:
 
 Trades: ${formatDateTime(nextGameweek.trades_time)}
 Free transfers (waivers): ${formatDateTime(nextGameweek.waivers_time)}
-Pick team: ${formatDateTime(nextGameweek.deadline_time)}`,
+Pick team: ${formatDateTime(nextGameweek.deadline_time)}` : ''}`,
   };
 }
